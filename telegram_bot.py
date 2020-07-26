@@ -16,18 +16,21 @@ def send_respond(message):
         try:
             if len(compare_ERA_latest_with_db()) > 0:
                 bot.send_message(message.chat.id, f'ERA New houses: for {date}')
-                for house in compare_ERA_latest_with_db():
-                    bot.send_message(message.chat.id, house)
+                for era_house in compare_ERA_latest_with_db():
+                    bot.send_message(message.chat.id, era_house)
             update_era_db()
+        except:
+            bot.send_message(message.chat.id, "ERA request went wrong")
 
+        try:
             if len(compare_SVENSKAFAST_latest_with_db()) > 0:
                 bot.send_message(message.chat.id, f'Svenska Fast New houses: for {date}')
-                for house in compare_ERA_latest_with_db():
-                    bot.send_message(message.chat.id, house)
+                for svenska_house in compare_SVENSKAFAST_latest_with_db():
+                    bot.send_message(message.chat.id, svenska_house)
             update_SVENSKAFAST_db()
             time.sleep(60)
         except:
-            bot.send_message(message.chat.id, "Something went wrong")
+            bot.send_message(message.chat.id, "Svenska Fast went wrong")
 
 
 if __name__ == '__main__':
