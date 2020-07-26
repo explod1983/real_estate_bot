@@ -15,16 +15,16 @@ def latest_result():
     return [URL + str(house['href'] + '\n') for house in houses]
 
 
-def update_db():
-    with open('era_base.txt', 'w') as file:
+def update_era_db():
+    with open('base/era_base.txt', 'w') as file:
         for link in latest_result():
             file.write(link)
 
 
 def read_db():
-    with open('era_base.txt', 'r') as file:
+    with open('base/era_base.txt', 'r') as file:
         return file.readlines()
 
 
-def compare_latest_with_db():
+def compare_ERA_latest_with_db():
     return list(set(latest_result()) - set(read_db()))
