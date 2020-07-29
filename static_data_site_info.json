@@ -1,0 +1,12 @@
+{
+  "web_sites": [
+    {
+      "URL" : "https://www.svenskfast.se/hus/vastra-gotaland/ale/",
+      "PATH" : "/base/svenskfast_base.txt"
+      },
+    {
+      "URL": "https://www.erasweden.com/hitta-din-bostad?query=Commune%3A%22Ale%22",
+      "PATH": "/base/era_base.txt"
+    }
+  ]
+}
