@@ -2,6 +2,7 @@ import sys
 
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class Parser:
@@ -9,8 +10,8 @@ class Parser:
     def __init__(self, url):
         try:
             self.url = url
-            r = requests.get(self.url)
-            self.page = BeautifulSoup(r.content, "html.parser")
+            self.r = requests.get(self.url)
+            self.page = BeautifulSoup(self.r.content, "html.parser")
         except:
             e = sys.exc_info()[0]
             print('Error, while HTTP request: \n', e)
@@ -21,9 +22,22 @@ class Parser:
                 return self.svenska_filter()
             elif 'erasweden' in self.url:
                 return self.era_filter()
+            elif 'lansfast' in self.url:
+                return self.lansfast_filter()
         except:
             e = sys.exc_info()[0]
             print('Error, in filter: \n', e)
+
+    def lansfast_filter(self):
+        try:
+            js_parse = json.loads(self.r.content)
+            soup = BeautifulSoup(js_parse['View'], "html.parser")
+            filter_results = soup.find("div", {"class": "boxViewContainer residenceContainer"})
+            houses = filter_results.find_all("a")
+            return [self.url[:23] + str(house['href'] + '\n') for house in houses]
+        except:
+            e = sys.exc_info()[0]
+            print('Error, in Svenska filter: \n', e)
 
     def svenska_filter(self):
         try:
