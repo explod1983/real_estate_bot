@@ -9,8 +9,12 @@
       "PATH": "/base/era_base.txt"
     },
     {
-      "URL" : "https://www.lansfast.se/umbraco/surface/estate/GetEstatesBySearch?SizeMin=0&PriceMax=0&NumberOfRoomsMin=0&AreaMin=0&Types=Alla%20typer&Tags=Ale%20(Kommun)X&Filter=ForSaleOrHeadStartHome&Sort=Bidding&PageNumber=1&Cid=&Eaid=",
+      "URL" : "https://www.lansfast.se/umbraco/surface/estate/GetEstatesBySearch?SizeMin=0&PriceMax=0&NumberOfRoomsMin=0&AreaMin=0&Types=Villa&Tags=Ale%20(Kommun)X&Filter=ForSaleOrHeadStartHome&Sort=Bidding&PageNumber=1&Cid=&Eaid=",
       "PATH" : "/base/lansfast.txt"
-      }
+      },
+    {
+      "URL": "https://www.fastighetsbyran.com/HemsidanAPI/api/v1/soek/objekt/1/false/",
+      "PATH": "/base/fastighets_base.txt"
+    }
   ]
 }

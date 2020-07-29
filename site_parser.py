@@ -24,17 +24,43 @@ class Parser:
                 return self.era_filter()
             elif 'lansfast' in self.url:
                 return self.lansfast_filter()
+            elif 'fastighet' in self.url:
+                return self.fastighet_filter()
         except:
             e = sys.exc_info()[0]
             print('Error, in filter: \n', e)
 
     def lansfast_filter(self):
         try:
-            js_parse = json.loads(self.r.content)
-            soup = BeautifulSoup(js_parse['View'], "html.parser")
+            # js_parse = json.loads(self.r.content)
+            soup = BeautifulSoup(self.r.json()['View'], "html.parser")
             filter_results = soup.find("div", {"class": "boxViewContainer residenceContainer"})
             houses = filter_results.find_all("a")
             return [self.url[:23] + str(house['href'] + '\n') for house in houses]
+        except:
+            e = sys.exc_info()[0]
+            print('Error, in Svenska filter: \n', e)
+
+    def fastighet_filter(self):
+        try:
+            object_url = 'https://www.fastighetsbyran.com/sv/sverige/objekt/?objektid='
+            headers = {
+                'Content-Type': 'application/json',
+            }
+
+            data = '{"valdaMaeklarObjektTyper":[0],' \
+                   '"valdaNyckelord":[],' \
+                   '"valdaLaen":[],' \
+                   '"valdaKontor":[],' \
+                   '"valdaKommuner":["435"],' \
+                   '"valdaNaeromraaden":[],' \
+                   '"valdaPostorter":[],' \
+                   '"inkluderaNyproduktion":true,' \
+                   '"inkluderaPaaGaang":true}'
+
+            r = requests.post('https://www.fastighetsbyran.com/HemsidanAPI/api/v1/soek/objekt/1/false/',
+                                     headers=headers, data=data)
+            return ['{}{}\n'.format(object_url, obj_id['maeklarObjektId']) for obj_id in r.json()['results']]
         except:
             e = sys.exc_info()[0]
             print('Error, in Svenska filter: \n', e)
