@@ -5,6 +5,7 @@ from parse_era import update_era_db, compare_ERA_latest_with_db
 from parse_svenskfast import update_SVENSKAFAST_db, compare_SVENSKAFAST_latest_with_db
 import time
 from _datetime import datetime
+import sys
 
 bot = telebot.TeleBot(config.token)
 date = datetime.now().strftime("%d %B, %Y")
@@ -20,7 +21,8 @@ def send_respond(message):
                     bot.send_message(message.chat.id, era_house)
             update_era_db()
         except:
-            bot.send_message(message.chat.id, "ERA request went wrong")
+            e = sys.exc_info()[0]
+            bot.send_message(message.chat.id, f"ERA request went wrong:\n {e}")
 
         try:
             if len(compare_SVENSKAFAST_latest_with_db()) > 0:
@@ -30,7 +32,8 @@ def send_respond(message):
             update_SVENSKAFAST_db()
             time.sleep(60)
         except:
-            bot.send_message(message.chat.id, "Svenska Fast went wrong")
+            e = sys.exc_info()[0]
+            bot.send_message(message.chat.id, f"Svenska Fast went wrong\n {e}")
 
 
 if __name__ == '__main__':

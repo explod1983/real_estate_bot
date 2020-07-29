@@ -1,5 +1,5 @@
 https://www.erasweden.com/kontor/ale/bostad/1292027
-https://www.erasweden.com/kontor/kungalv/bostad/1404329
+https://www.erasweden.com/kontor/ale/bostad/1292021
 https://www.erasweden.com/kontor/ale/bostad/1412787
 https://www.erasweden.com/kontor/ale/bostad/1410203
 https://www.erasweden.com/kontor/ale/bostad/1409447
@@ -21,4 +21,3 @@ https://www.erasweden.com/kontor/ale/bostad/1325713
 https://www.erasweden.com/kontor/ale/bostad/1313889
 https://www.erasweden.com/kontor/ale/bostad/1297129
 https://www.erasweden.com/kontor/ale/bostad/1294145
-https://www.erasweden.com/kontor/ale/bostad/1292021
