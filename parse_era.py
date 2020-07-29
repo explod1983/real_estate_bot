@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import sys
 
 URL = 'https://www.erasweden.com'
 URL_ale = f'{URL}/hitta-din-bostad?query=Commune%3A%22Ale%22'
@@ -16,14 +17,22 @@ def latest_result():
 
 
 def update_era_db():
-    with open('base/era_base.txt', 'w') as file:
-        for link in latest_result():
-            file.write(link)
+    try:
+        with open('base/era_base.txt', 'w') as file:
+            for link in latest_result():
+                file.write(link)
+    except:
+        e = sys.exc_info()[0]
+        print('Error, cannot write to DB file: ', e)
 
 
 def read_db():
-    with open('base/era_base.txt', 'r') as file:
-        return file.readlines()
+    try:
+        with open('base/era_base.txt', 'r') as file:
+            return file.readlines()
+    except:
+        e = sys.exc_info()[0]
+        print('Error, cannot write to DB file: ', e)
 
 
 def compare_ERA_latest_with_db():
