@@ -2,7 +2,6 @@ import sys
 
 import requests
 from bs4 import BeautifulSoup
-import json
 
 
 class Parser:
@@ -32,7 +31,6 @@ class Parser:
 
     def lansfast_filter(self):
         try:
-            # js_parse = json.loads(self.r.content)
             soup = BeautifulSoup(self.r.json()['View'], "html.parser")
             filter_results = soup.find("div", {"class": "boxViewContainer residenceContainer"})
             houses = filter_results.find_all("a")
